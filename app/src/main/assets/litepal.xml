@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value="xq_weather"/>
+    <verson value="1"/>
+    <list>
+        <mapping class="com.example.xuqiang.xqweather.db.City"/>
+        <mapping class="com.example.xuqiang.xqweather.db.County"/>
+        <mapping class="com.example.xuqiang.xqweather.db.Province"/>
+    </list>
+
+</litepal>
