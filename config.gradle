@@ -1,0 +1,30 @@
+if(getProperties().get("project")==null){
+    return;
+}
+ext {
+    RxJavaVersion = "1.1.6"
+
+
+    RxJava                      = ["io.reactivex:rxjava:" + "$RxJavaVersion"]
+}
+
+
+project.ext {
+    applicationId = "com.xxx"
+    buildToolsVersion = "23.0.2"
+    compileSdkVersion = 23
+    minSdkVersion = 14
+    targetSdkVersion = 23
+    versionCode = 1
+    versionName = "1.0.0"
+    abortOnLintError = false
+    checkLintRelease = false
+    useJack = false
+    abortOnLintError = false
+
+    javaVersion = JavaVersion.VERSION_1_8
+    RxJavaVersion = "1.1.6"
+
+
+    RxJava                      = ["io.reactivex:rxjava:" + "$RxJavaVersion"]
+}

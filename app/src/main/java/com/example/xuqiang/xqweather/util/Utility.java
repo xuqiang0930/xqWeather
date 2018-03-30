@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import com.example.xuqiang.xqweather.db.City;
 import com.example.xuqiang.xqweather.db.County;
 import com.example.xuqiang.xqweather.db.Province;
+import com.example.xuqiang.xqweather.gson.Weather;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,7 +30,7 @@ public class Utility {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     Province province = new Province();
-                    province.setId(jsonObject.getInt("id"));
+                    province.setProvinceCode(jsonObject.getInt("id"));
                     province.setProvinceName(jsonObject.getString("name"));
                     province.save();
                 }
@@ -48,7 +50,7 @@ public class Utility {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     City city = new City();
-                    city.setId(jsonObject.getInt("id"));
+                    city.setCityCode(jsonObject.getInt("id"));
                     city.setCityName(jsonObject.getString("name"));
                     city.setProvinceId(provinceId);
                     city.save();
@@ -81,5 +83,19 @@ public class Utility {
             }
         }
         return false;
+    }
+    /**
+     * 将返回的JSON数据解析成Weather实体类
+     */
+    public static Weather handleWeatherResponse(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent, Weather.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
